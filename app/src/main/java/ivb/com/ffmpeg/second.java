@@ -28,13 +28,16 @@ public class second extends AppCompatActivity {
         {
             Log.d("Files", "FileName:" + file[i].getName());
         }
+        String[] word = {"ffmpeg -i /storage/emulated/0/project/one.mp4 -c:v libx264 -crf 24 -b:v 1M -c:a aac output.mp4"};
         FFmpeg ffmpeg = FFmpeg.getInstance(getApplicationContext());
         try {
             // to execute "ffmpeg -version" command you just need to pass "-version"
-            ffmpeg.execute("-framerate 1/5 -i /storage/sdcard0/project/img%03d.jpg -c:v libx264 -r 2 -pix_fmt yuv420p /storage/sdcard0/project/nepv.mp4", new ExecuteBinaryResponseHandler() {
+            ffmpeg.execute("-i /storage/emulated/0/project/one.mp4 -s 640x480 -b 1M -vcodec mpeg1video -acodec copy /storage/emulated/0/project/output.mp4", new ExecuteBinaryResponseHandler() {
 
                 @Override
-                public void onStart() {}
+                public void onStart() {
+
+                }
 
                 @Override
                 public void onProgress(String message) {
